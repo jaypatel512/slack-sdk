@@ -4,4 +4,3 @@ sudo: false
 language: java
 jdk:
   - oraclejdk8
-after_script: ./gradlew clean test
