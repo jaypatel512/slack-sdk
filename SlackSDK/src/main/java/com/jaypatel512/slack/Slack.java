@@ -89,6 +89,4 @@ public class Slack {
 
     return connection;
   }
-
-
 }

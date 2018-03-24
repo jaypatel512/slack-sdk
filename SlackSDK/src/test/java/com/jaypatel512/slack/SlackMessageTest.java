@@ -48,5 +48,4 @@ public class SlackMessageTest {
     assertEquals(1, message.attachments().size());
     assertEquals(attachment, message.attachments().get(0));
   }
-
 }

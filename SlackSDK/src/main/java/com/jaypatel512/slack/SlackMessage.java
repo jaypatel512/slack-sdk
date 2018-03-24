@@ -10,6 +10,8 @@ import lombok.experimental.Accessors;
 public class SlackMessage {
 
   private String text;
+  private String channel;
+  private String username;
   private List<SlackAttachment> attachments;
 
   public SlackMessage addAttachment(SlackAttachment attachment) {

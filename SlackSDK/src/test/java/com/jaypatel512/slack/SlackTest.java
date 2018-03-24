@@ -75,5 +75,4 @@ public class SlackTest {
 
     assertEquals(10, slack.getTimeout());
   }
-
 }
