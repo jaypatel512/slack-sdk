@@ -9,7 +9,7 @@ import org.junit.Test;
 public class SlackMessageTest {
 
   @Test
-  public void setters_setsAllValues() {
+  public void setters_setsValues() {
     SlackField slackField = new SlackField()
         .title("Title");
     SlackAttachment attachment = new SlackAttachment()

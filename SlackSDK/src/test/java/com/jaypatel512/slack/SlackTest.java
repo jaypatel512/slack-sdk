@@ -20,7 +20,7 @@ public class SlackTest {
   }
 
   @Test
-  public void build_setsDefaultProxy_ifNotProvided() {
+  public void builder_setsDefaultProxy_ifNotProvided() {
     Slack slack = Slack.builder("https://localhost")
         .build();
 
@@ -39,7 +39,7 @@ public class SlackTest {
   }
 
   @Test
-  public void build_setsDefaultGson_ifNotProvided() {
+  public void builder_setsDefaultGson_ifNotProvided() {
     Slack slack = Slack.builder("https://localhost")
         .build();
 
@@ -59,7 +59,7 @@ public class SlackTest {
   }
 
   @Test
-  public void build_setsDefaultTimeout_ifNotProvided() {
+  public void builder_setsDefaultTimeout_ifNotProvided() {
     Slack slack = Slack.builder("https://localhost")
         .build();
 
