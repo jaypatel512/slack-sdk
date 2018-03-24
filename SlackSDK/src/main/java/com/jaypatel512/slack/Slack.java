@@ -26,7 +26,7 @@ public class Slack {
   private static final String POST = "POST";
 
   @Default private Proxy proxy = Proxy.NO_PROXY;
-  @Default private Gson gson = new GsonBuilder().serializeNulls().setFieldNamingPolicy(
+  @Default private Gson gson = new GsonBuilder().setFieldNamingPolicy(
       FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
   @Default private int timeout = 5000;
 

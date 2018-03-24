@@ -34,8 +34,6 @@ public class SlackAttachmentTest {
         .timestamp(new Date())
         .fields(Collections.singletonList(slackField));
 
-
-
     assertEquals("Required plain-text summary of the attachment.", attachment.fallback());
     assertEquals("#36a64f", attachment.color());
     assertEquals("Optional text that appears above the attachment block", attachment.pretext());

@@ -1,5 +1,6 @@
 package com.jaypatel512.slack;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -12,6 +13,8 @@ public class SlackMessage {
   private String text;
   private String channel;
   private String username;
+  @SerializedName("mrkdwn")
+  private Boolean markdown;
   private List<SlackAttachment> attachments;
 
   public SlackMessage addAttachment(SlackAttachment attachment) {

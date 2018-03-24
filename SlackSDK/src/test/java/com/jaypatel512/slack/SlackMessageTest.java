@@ -48,4 +48,15 @@ public class SlackMessageTest {
     assertEquals(1, message.attachments().size());
     assertEquals(attachment, message.attachments().get(0));
   }
+
+  @Test
+  public void gson_serializesCorrectly() {
+    Slack slack = Slack.builder("https://localhost")
+        .build();
+
+    SlackMessage slackMessage = new SlackMessage().markdown(true);
+
+    assertEquals(true, slackMessage.markdown());
+    assertEquals("{\"mrkdwn\":true}", slack.getGson().toJson(slackMessage));
+  }
 }

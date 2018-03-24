@@ -44,7 +44,7 @@ public class SlackTest {
         .build();
 
     assertNotNull(slack.getGson());
-    assertEquals(true, slack.getGson().serializeNulls());
+    assertEquals(false, slack.getGson().serializeNulls());
     assertEquals(LOWER_CASE_WITH_UNDERSCORES, slack.getGson().fieldNamingStrategy());
   }
 
@@ -64,7 +64,7 @@ public class SlackTest {
         .build();
 
     assertNotNull(slack.getGson());
-    assertEquals(true, slack.getGson().serializeNulls());
+    assertEquals(5000, slack.getTimeout());
   }
 
   @Test
