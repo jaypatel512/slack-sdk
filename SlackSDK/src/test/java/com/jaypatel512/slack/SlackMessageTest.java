@@ -2,44 +2,51 @@ package com.jaypatel512.slack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-import java.util.Collections;
-import java.util.Date;
 import org.junit.Test;
 
 public class SlackMessageTest {
 
   @Test
   public void setters_setsAllValues() {
-    SlackField slackField = new SlackField();
-    slackField.title("Priority");
-    slackField.value("High");
-    slackField.shorten(false);
+    SlackField slackField = new SlackField()
+        .title("Title");
+    SlackAttachment attachment = new SlackAttachment()
+        .authorName("Author Name")
+        .addField(slackField);
 
-    SlackAttachment attachment = new SlackAttachment();
-    attachment.fallback("Required plain-text summary of the attachment.")
-        .color("#36a64f")
-        .pretext("Optional text that appears above the attachment block")
-        .authorName("Bobby Tables")
-        .authorLink("http://flickr.com/bobby/")
-        .authorIcon("http://flickr.com/icons/bobby.jpg")
-        .title("Slack API Documentation")
-        .titleLink("https://api.slack.com")
-        .text("Optional text that appears within the attachment")
-        .imageUrl("http://my-website.com/path/to/image.jpg")
-        .thumbUrl("http://example.com/path/to/thumb.png")
-        .footer("Slack API")
-        .footerIcon("https://platform.slack-edge.com/img/default_application_icon.png")
-        .ts(new Date().getTime())
-        .fields(Collections.singletonList(slackField));
+    SlackMessage slackMessage = new SlackMessage().text("Hello").addAttachment(attachment);
 
-    SlackMessage slackMessage = new SlackMessage().addAttachment(attachment);
     assertNotNull(slackMessage);
+    assertEquals("Hello", slackMessage.text());
     assertNotNull(slackMessage.attachments());
     assertEquals(1, slackMessage.attachments().size());
 
     SlackAttachment actualAttachment = slackMessage.attachments().get(0);
-    assertEquals("Required plain-text summary of the attachment.", actualAttachment.fallback());
+
+    assertNotNull(actualAttachment);
+    assertNotNull(actualAttachment.fields());
+    assertEquals(1, actualAttachment.fields().size());
+
+    SlackField actualField = actualAttachment.fields().get(0);
+
+    assertNotNull(actualField);
+    assertEquals("Title", actualField.title());
+  }
+
+  @Test
+  public void addAttachment_addsAttachment() {
+    SlackMessage message = new SlackMessage();
+    SlackAttachment attachment = new SlackAttachment();
+
+    assertNull(message.attachments());
+
+    message.addAttachment(attachment);
+
+    assertNotNull(message.attachments());
+    assertEquals(1, message.attachments().size());
+    assertEquals(attachment, message.attachments().get(0));
   }
 
 }

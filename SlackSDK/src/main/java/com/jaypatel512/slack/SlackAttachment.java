@@ -1,6 +1,8 @@
 package com.jaypatel512.slack;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -23,7 +25,14 @@ public class SlackAttachment {
   private String thumbUrl;
   private String footer;
   private String footerIcon;
-  private Long ts;
+
+  @SerializedName("ts")
+  private Long timestamp;
+
+  public SlackAttachment timestamp(Date date) {
+    timestamp = date.getTime() / 1000;
+    return this;
+  }
 
   public SlackAttachment addField(SlackField field) {
     if (fields == null) {
