@@ -3,10 +3,11 @@ plugins {
 }
 
 apply plugin: 'java'
+apply plugin: 'signing'
 apply plugin: 'io.codearte.nexus-staging'
 apply plugin: 'maven'
 
-version '0.0.1-SNAPSHOT'
+version '0.0.1'
 
 sourceCompatibility = 1.8
 
@@ -49,6 +50,12 @@ task sourcesJar(type: Jar, dependsOn: delombok) {
     from delombok.outputDir
 }
 
+javadoc {
+    dependsOn delombok
+    source = delombok.outputDir
+    failOnError = false
+}
+
 artifacts {
     archives sourcesJar
 }
@@ -57,12 +64,19 @@ nexusStaging {
     packageGroup = "com.github.jaypatel512"
 }
 
+signing {
+    required { !version.endsWith("SNAPSHOT") }
+    sign configurations.archives
+}
+
 def sonatypeUsername = System.env['SONATYPE_USERNAME']
 def sonatypePassword = System.env['SONATYPE_PASSWORD']
 
 uploadArchives {
     repositories {
         mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
             repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
                 authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
