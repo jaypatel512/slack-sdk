@@ -3,7 +3,6 @@ plugins {
 }
 
 apply plugin: 'java'
-apply plugin: 'signing'
 apply plugin: 'io.codearte.nexus-staging'
 apply plugin: 'maven'
 
@@ -54,13 +53,8 @@ artifacts {
     archives sourcesJar
 }
 
-signing {
-    required { !version.endsWith("SNAPSHOT") }
-    sign configurations.archives
-}
-
 nexusStaging {
-    packageGroup = "com.jaypatel512"
+    packageGroup = "com.github.jaypatel512"
 }
 
 def sonatypeUsername = System.env['SONATYPE_USERNAME']
@@ -69,8 +63,6 @@ def sonatypePassword = System.env['SONATYPE_PASSWORD']
 uploadArchives {
     repositories {
         mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
             repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
                 authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
@@ -82,7 +74,7 @@ uploadArchives {
 
             pom.project {
                 name 'slack-sdk'
-                groupId = 'com.jaypatel512'
+                groupId = 'com.github.jaypatel512'
                 version = "${version}"
                 description 'Slack Webhook SDK allows sending messages to Slack.'
 
