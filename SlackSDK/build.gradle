@@ -1,10 +1,11 @@
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.11'
-    id 'java'
-    id 'signing'
-    id 'io.codearte.nexus-staging'
-    id 'maven'
 }
+
+apply plugin: 'java'
+apply plugin: 'signing'
+apply plugin: 'io.codearte.nexus-staging'
+apply plugin: 'maven'
 
 version '0.0.1-SNAPSHOT'
 
