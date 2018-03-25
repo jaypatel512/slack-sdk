@@ -18,7 +18,7 @@ To use the latest build from the `master` branch use:
 
  ```gradle
 dependencies {
-    compile 'com.jaypatel512:slack-sdk:0.0.1-SNAPSHOT'
+    compile 'com.jaypatel512:slack-sdk:0.0.2-SNAPSHOT'
 }
 ```
 
