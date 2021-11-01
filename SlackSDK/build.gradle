@@ -23,7 +23,7 @@ test {
 }
 
 dependencies {
-    compile 'com.google.code.gson:gson:2.8.7'
+    compile 'com.google.code.gson:gson:2.8.9'
     testCompile group: 'junit', name: 'junit', version: '4.13.2'
 }
 
